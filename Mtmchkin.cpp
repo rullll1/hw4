@@ -22,7 +22,7 @@
 
 #include "Players/Fighter.h"
 #include "Players/Wizard.h"
-#include "Players/Rouge.h"
+#include "Players/Rogue.h"
 
 
 #include "utilities.h"

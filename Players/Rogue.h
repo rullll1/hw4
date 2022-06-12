@@ -2,8 +2,8 @@
 // Created by rulll on 09/06/2022.
 //
 
-#ifndef HW4_ROUGE_H
-#define HW4_ROUGE_H
+#ifndef HW4_ROGUE_H
+#define HW4_ROGUE_H
 #include "Player.h"
 
 class Rouge: public Player {
@@ -13,4 +13,4 @@ public:
 };
 
 
-#endif //HW4_ROUGE_H
+#endif //HW4_ROGUE_H

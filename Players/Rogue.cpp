@@ -1,7 +1,7 @@
 //
 // Created by rulll on 09/06/2022.
 //
-#include "Rouge.h"
+#include "Rogue.h"
 #include "../consts.h"
 #include <iostream>
 
