@@ -204,7 +204,14 @@ bool Mtmchkin::isGameOver() const {
 void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
     printLeaderBoardStartMessage();
 
-    Player* players[this->m_total_players];
+//    Player* players[this->m_total_players];
+    std::vector<Player*> players;
+
+    Player *p;
+    for (int i=0; i < this->m_total_players; i ++){
+        players.push_back(p);
+    }
+
     int *level = new int[this->m_total_players];
 
     for (int i=0; i < this->m_total_players; i++){
