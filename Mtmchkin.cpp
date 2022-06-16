@@ -188,7 +188,7 @@ void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
 
 bool Mtmchkin::isGameOver() const {
     std::queue<Player*> playersQCopy = this->m_playersQ;
-    for (int i=0; i < this->m_playersQ.size(); i++){
+    for (size_t i=0; i < this->m_playersQ.size(); i++){
         Player* player = playersQCopy.front();
 
         if (player->isPlaying()){
@@ -219,7 +219,7 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
 
 
 
-    int index = 0;
+    size_t index = 0;
 
     for (; index < this->m_losers.size(); bottomIndex++, index++){
         Player* player = LosersQCopy.front();
