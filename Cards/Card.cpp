@@ -85,5 +85,6 @@ void Card::printinfo() const {
 std::ostream& operator<<(std::ostream& os, const Card& card)
 {
     card.printinfo();
+    return os;
 }
 

@@ -138,6 +138,7 @@ const std::string &Player::getType() const {
 std::ostream& operator<<(std::ostream& os, const Player& player)
 {
     player.printInfo();
+    return os;
 }
 
 void Player::setInGame() {
