@@ -33,7 +33,7 @@ public:
 struct DeckFileFormatError : public std::exception
 {
     std::string s;
-    DeckFileFormatError(std::string ss) : s(ss) {}
+    DeckFileFormatError(std::string& ss) : s(ss) {}
     ~DeckFileFormatError() throw () {} // Updated
     const char* what() const throw() { return s.c_str(); }
 };
