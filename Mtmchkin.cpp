@@ -34,7 +34,7 @@ bool validateName(std::string& name){
 }
 
 bool validateRole(std::string& role){
-    unsigned int size = playerRoles.size();
+    unsigned size = playerRoles.size();
     for (int i=0; i < size; i++){
         if (playerRoles[i] == role){
             return true;
