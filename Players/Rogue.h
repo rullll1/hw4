@@ -9,6 +9,7 @@
 class Rouge final : public Player {
 public:
     Rouge(const std::string& name);
+    virtual ~Rouge() {}
     void addCoins(int coins) override;
 };
 
