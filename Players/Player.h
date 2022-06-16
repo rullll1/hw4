@@ -28,7 +28,7 @@ public:
     Player(const std::string& name);
 
     Player(const Player&) = default;
-    ~Player() = default;
+    virtual ~Player() = default;
     /*
      * prints Player info per exercise document
      */

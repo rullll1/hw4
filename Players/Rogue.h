@@ -9,7 +9,7 @@
 class Rouge final : public Player {
 public:
     Rouge(const std::string& name);
-    virtual ~Rouge() {}
+    ~Rouge() override= default;
     void addCoins(int coins) override;
 };
 

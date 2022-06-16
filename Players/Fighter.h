@@ -9,7 +9,7 @@
 class Fighter final : public Player{
 public:
     Fighter(const std::string& name);
-    virtual ~Fighter() {}
+    ~Fighter() override= default;
     int getAttackStrength() override;
 };
 

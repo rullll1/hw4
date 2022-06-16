@@ -10,7 +10,7 @@
 class Wizard final : public Player{
 public:
     Wizard(const std::string& name);
-    virtual ~Wizard() {}
+    ~Wizard() override = default;
 
 //    using Player::Player;
     void heal(int hp) override;
