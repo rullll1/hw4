@@ -118,7 +118,7 @@ void Mtmchkin::populatePlayers(){
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) {
-
+    printStartGameMessage();
     this->m_cardMap[DRAGON] = new Dragon();
     this->m_cardMap[VAMPIRE] = new Vampire();
     this->m_cardMap[GOBLIN] = new Goblin();
@@ -127,7 +127,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     this->m_cardMap[TREASURE] = new Treasure();
     this->m_cardMap[PIT_FALL] = new Pitfall();
     this->m_cardMap[MERCHANT] = new Merchant();
-    printStartGameMessage();
     populateDeck(fileName);
     setGameSize();
     populatePlayers();
