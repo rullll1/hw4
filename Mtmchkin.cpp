@@ -276,6 +276,34 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
 
 }
 
+//template<class T>
+void deletePlayersQ(std::queue<Player*>& objectQ){
+    size_t size = objectQ.size();
+    for (size_t i=0; i < size; i ++ ){
+        Player* object = objectQ.front();
+        objectQ.pop();
+        delete object;
+    }
+}
+
+void Mtmchkin::deleteDeck(){
+    for (size_t i=0; i < N_CARD_TYPES; i ++ ){
+        Card* card = this->m_cardMap[cardTypes[i]];
+        delete card;
+    }
+}
+
+
+
 void Mtmchkin::incrementRounds() {
     this->m_rounds += 1;
+}
+
+Mtmchkin::~Mtmchkin() {
+    deletePlayersQ(this->m_playersQ);
+    deletePlayersQ(this->m_losers);
+    deletePlayersQ(this->m_winners);
+    this->deleteDeck();
+//    deletePlayersQ(this->m_deck);
+
 }

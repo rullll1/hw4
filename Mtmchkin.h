@@ -22,6 +22,8 @@ public:
 
     Mtmchkin & operator=(const Mtmchkin&) = delete;
 
+    ~Mtmchkin();
+
 
 
 
@@ -72,6 +74,7 @@ private:
     void playCard(Player& player);
     void setGameSize();
     void populatePlayers();
+    void deleteDeck();
 
 
     void popPlayer(){  // TODO: delete later maybe
