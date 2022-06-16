@@ -205,7 +205,7 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
     printLeaderBoardStartMessage();
 
     Player* players[this->m_total_players];
-    int level[this->m_total_players];
+    int *level = new int[this->m_total_players];
 
     for (int i=0; i < this->m_total_players; i++){
         level[i] = 0;
@@ -257,17 +257,15 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
                 }
             }
         }
+
     }
-
-
-
-
-
 
 
     for (int i=this->m_total_players - 1; i >= 0 ; i--){
         printPlayerLeaderBoard(this->m_total_players - i, *players[i]);
     }
+
+    delete[] level;
 
 }
 
