@@ -7,7 +7,7 @@
 #include "Player.h"
 #include <string>
 
-class Wizard: public Player{
+class Wizard final : public Player{
 public:
     Wizard(const std::string& name);
 

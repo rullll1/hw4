@@ -6,7 +6,7 @@
 #define HW4_ROGUE_H
 #include "Player.h"
 
-class Rouge: public Player {
+class Rouge final : public Player {
 public:
     Rouge(const std::string& name);
     void addCoins(int coins) override;
