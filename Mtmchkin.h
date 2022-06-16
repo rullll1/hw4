@@ -19,7 +19,6 @@ public:
     */
     Mtmchkin(const std::string fileName);
 
-    Mtmchkin(const Mtmchkin&) = delete;
 
     Mtmchkin & operator=(const Mtmchkin&) = delete;
 

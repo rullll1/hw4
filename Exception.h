@@ -17,15 +17,6 @@ public:
 };
 
 
-//class DeckFileFormatError : public std::exception {
-//public:
-//    const char* what () {
-//        char const *p = "Deck File Error: File not found";
-//        return p;
-////        return "Deck File Error: File not found";
-//    }
-//};
-
 
 class DeckFileInvalidSize : public std::exception {
 public:
