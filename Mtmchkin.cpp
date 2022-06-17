@@ -127,7 +127,20 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     this->m_cardMap[TREASURE] = new Treasure();
     this->m_cardMap[PIT_FALL] = new Pitfall();
     this->m_cardMap[MERCHANT] = new Merchant();
-    populateDeck(fileName);
+//    try{
+//    }
+//    catch(const DeckFileInvalidSize& e){
+//        bool flag = true;
+//        throw;
+//    }
+
+    try{
+        populateDeck(fileName);
+    }
+    catch(const DeckFileInvalidSize& e){
+        deleteDeck();
+        throw;
+    }
     setGameSize();
     populatePlayers();
     this->m_rounds = 1;
@@ -300,6 +313,7 @@ void Mtmchkin::incrementRounds() {
 }
 
 Mtmchkin::~Mtmchkin() {
+    std::cout << "work please";
     deletePlayersQ(this->m_playersQ);
     deletePlayersQ(this->m_losers);
     deletePlayersQ(this->m_winners);
