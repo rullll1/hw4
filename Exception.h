@@ -9,22 +9,22 @@ using namespace std;
 
 class DeckFileNotFound : public std::exception {
 public:
-    std::string s ="Deck File Error: File not found";
-    const char* what () {
+//    std::string s ="Deck File Error: File not found";
+//    const char* what () {
 //        char const *p = "Deck File Error: File not found";
-        return s.c_str();
+//        return s.c_str();
 //        return "Deck File Error: File not found";
-    }
+//    }
 };
 
 
 
 class DeckFileInvalidSize : public std::exception {
 public:
-    std::string s ="Deck File Error: Deck size is invalid";
-    const char* what () {
+//    std::string s ="Deck File Error: Deck size is invalid";
+//    const char* what () {
 //        char const *p = "Deck File Error: Deck size is invalid";
-        return s.c_str();
+//        return s.c_str();
 //        return "Deck File Error: File not found";
     }
 };
@@ -32,10 +32,10 @@ public:
 
 struct DeckFileFormatError : public std::exception
 {
-    std::string s;
-    DeckFileFormatError(std::string& ss) : s(ss) {}
-    ~DeckFileFormatError() throw () {} // Updated
-    const char* what() const throw() { return s.c_str(); }
+//    std::string s;
+//    DeckFileFormatError(std::string& ss) : s(ss) {}
+//    ~DeckFileFormatError() throw () {} // Updated
+//    const char* what() const throw() { return s.c_str(); }
 };
 
 
