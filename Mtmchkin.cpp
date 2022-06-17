@@ -137,7 +137,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     try{
         populateDeck(fileName);
     }
-    catch(const DeckFileInvalidSize& e){
+    catch(const std::exception& e){
         deleteDeck();
         throw;
     }
