@@ -313,7 +313,6 @@ void Mtmchkin::incrementRounds() {
 }
 
 Mtmchkin::~Mtmchkin() {
-    std::cout << "work please";
     deletePlayersQ(this->m_playersQ);
     deletePlayersQ(this->m_losers);
     deletePlayersQ(this->m_winners);
