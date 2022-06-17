@@ -191,7 +191,7 @@ void Mtmchkin::playRound() {
 void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
     if (!this->m_cardMap[cardName]){
         std::string error = "Deck File Error: File format error in line " + to_string(lineNumber);
-        throw DeckFileFormatError();
+        throw DeckFileFormatError(error);
     }
     Card* card = this->m_cardMap[cardName];
 //    std::cout << *card << std::endl;
