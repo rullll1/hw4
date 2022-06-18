@@ -6,6 +6,7 @@
 #include "../utilities.h"
 
 void Dragon::printinfo() const {
+    printCardDetails(std::cout, this->getName());
     printMonsterDetails(std::cout, this->m_force, this->m_hpLossOnDefeat, this->m_loot, true);
     printEndOfCardDetails(std::cout);
 

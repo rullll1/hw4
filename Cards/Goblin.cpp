@@ -15,6 +15,7 @@ Goblin::Goblin() {
 }
 
 void Goblin::printinfo() const {
+    printCardDetails(std::cout, this->getName());
     printMonsterDetails(std::cout, this->m_force, this->m_hpLossOnDefeat, this->m_loot);
     printEndOfCardDetails(std::cout);
 

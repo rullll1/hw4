@@ -27,6 +27,7 @@ void Vampire::handleBattleCard(Player &player, int force, int loot, int damageTa
 }
 
 void Vampire::printinfo() const {
+    printCardDetails(std::cout, this->getName());
     printMonsterDetails(std::cout, this->m_force, this->m_hpLossOnDefeat, this->m_loot);
     printEndOfCardDetails(std::cout);
 }
