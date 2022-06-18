@@ -1,25 +1,31 @@
 //
-// Created by Owner on 13/06/2022.
+// Created by stava on 6/15/2022.
 //
 
-#include "../Mtmchkin.h"
 
+#include <string>
+#include <iostream>
+#include <vector>
+#include <memory>
+#include "Mtmchkin.h"
+#include <algorithm>
 
-int main() {
-    const std::string FILE_NAME = "deck.txt";
+using std::unique_ptr;
+using std::cout;
+using std::cerr;
+using std::string;
+using std::endl;
+
+int main()
+{
+    const int MAX_NUMBER_OF_ROUNDS = 100;
     try {
-        Mtmchkin game = Mtmchkin(FILE_NAME);
-        while (!game.isGameOver()){
+        Mtmchkin game("deck.txt");
+        while (!game.isGameOver() && game.getNumberOfRounds() < MAX_NUMBER_OF_ROUNDS) {
             game.playRound();
         }
-    }
-    catch (DeckFileNotFound& e){
-        return EXIT_SUCCESS;
-    }
-    catch (DeckFileInvalidSize& e){
-        return EXIT_SUCCESS;
-    }
-    catch (DeckFileFormatError& e){
-        return EXIT_SUCCESS;
+        game.printLeaderBoard();
+    } catch(const std::exception &e){
+        cerr << e.what() << endl;
     }
 }
