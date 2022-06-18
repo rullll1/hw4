@@ -147,7 +147,7 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
 }
 
 int Mtmchkin::getNumberOfRounds() const {
-    return this->m_rounds;
+    return this->m_rounds - 1;
 }
 
 void Mtmchkin::playCard(Player& player){
