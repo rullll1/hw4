@@ -13,7 +13,6 @@ public:
     const char* what () {
 //        char const *p = "Deck File Error: File not found";
         return s.c_str();
-        return "Deck File Error: File not found";
     }
 };
 
@@ -23,9 +22,7 @@ class DeckFileInvalidSize : public std::exception {
 public:
     std::string s ="Deck File Error: Deck size is invalid";
     const char* what () {
-//        char const *p = "Deck File Error: Deck size is invalid";
         return s.c_str();
-        return "Deck File Error: File not found";
     }
 };
 

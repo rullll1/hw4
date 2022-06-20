@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "Mtmchkin.h"
+#include "../Mtmchkin.h"
 #include <algorithm>
 
 using std::unique_ptr;
@@ -19,13 +19,17 @@ using std::endl;
 int main()
 {
     const int MAX_NUMBER_OF_ROUNDS = 100;
+    std::string FILE_NAME = "deck.txt";
     try {
-        Mtmchkin game("deck.txt");
+        Mtmchkin game(FILE_NAME);
         while (!game.isGameOver() && game.getNumberOfRounds() < MAX_NUMBER_OF_ROUNDS) {
             game.playRound();
         }
         game.printLeaderBoard();
-    } catch(const std::exception &e){
+    } catch( const exception &e){
         cerr << e.what() << endl;
     }
 }
+
+
+//TODO:: FIX MAIN ASAP

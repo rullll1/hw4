@@ -20,6 +20,8 @@ const std::string BAR_FIGHT =  "Barfight";
 const std::string TREASURE =  "Treasure";
 const std::string MERCHANT =  "Merchant";
 const std::string PIT_FALL =  "Pitfall";
+const std::string GANG_BEGINING = "Gang";
+const std::string GANG_END = "EndGang";
 
 const int N_CARD_TYPES = 8;
 

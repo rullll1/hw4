@@ -2,23 +2,27 @@
 // Created by rulll on 09/06/2022.
 //
 
-#include "Mtmchkin.h"
 #include "consts.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <map>
 #include <functional>
+
+#include "Mtmchkin.h"
+
 #include "Cards/Card.h"
 #include "Cards/Barfight.h"
 #include "Cards/BattleCard.h"
-#include "Cards/Dragon.h"
 #include "Cards/Fairy.h"
-#include "Cards/Goblin.h"
 #include "Cards/Pitfall.h"
 #include "Cards/Treasure.h"
-#include "Cards/Vampire.h"
 #include "Cards/Merchant.h"
+
+#include "Cards/Dragon.h"
+#include "Cards/Vampire.h"
+#include "Cards/Goblin.h"
+#include "Cards/Gang.h"
 
 #include "Players/Fighter.h"
 #include "Players/Wizard.h"
@@ -48,10 +52,17 @@ void Mtmchkin::populateDeck(const std::string& fileName){
     std::string line;
     std::ifstream myFile (fileName);
     int lineNumber = 1;
+    int deckSize = 0;
     if (myFile.is_open()) {
         while (getline(myFile, line)) {
-            this->addCard(line, lineNumber);
-            lineNumber += 1;
+            if (line == GANG_BEGINING){
+                addGang(myFile, &lineNumber, &deckSize);
+            }
+            else {
+                this->addCard(line, lineNumber);
+                lineNumber += 1;  // TODO: maybe move it to addCard ?
+                deckSize += 1;  // TODO: maybe move it to addCard ?
+            }
         }
         myFile.close();
 
@@ -59,7 +70,7 @@ void Mtmchkin::populateDeck(const std::string& fileName){
     else {
         throw DeckFileNotFound();
     }
-    if (lineNumber < 5){
+    if (deckSize < 5){
         throw DeckFileInvalidSize();
     }
 
@@ -127,6 +138,19 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     this->m_cardMap[TREASURE] = new Treasure();
     this->m_cardMap[PIT_FALL] = new Pitfall();
     this->m_cardMap[MERCHANT] = new Merchant();
+
+//    this->m_cardMap.insert(std::make_pair(DRAGON, std::unique_ptr<Card>(new Dragon())));
+//    this->m_cardMap.insert(std::make_pair(VAMPIRE, std::unique_ptr<Card>(new Vampire())));
+//    this->m_cardMap.insert(std::make_pair(GOBLIN, std::unique_ptr<Card>(new Goblin())));
+//    this->m_cardMap.insert(std::make_pair(FAIRY, std::unique_ptr<Card>(new Fairy())));
+//    this->m_cardMap.insert(std::make_pair(BAR_FIGHT, std::unique_ptr<Card>(new Barfight())));
+//    this->m_cardMap.insert(std::make_pair(TREASURE, std::unique_ptr<Card>(new Treasure())));
+//    this->m_cardMap.insert(std::make_pair(PIT_FALL, std::unique_ptr<Card>(new Pitfall())));
+//    this->m_cardMap.insert(std::make_pair(MERCHANT, std::unique_ptr<Card>(new Merchant())));
+
+
+
+
 //    try{
 //    }
 //    catch(const DeckFileInvalidSize& e){
@@ -188,15 +212,34 @@ void Mtmchkin::playRound() {
 
 }
 
-void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
+void Mtmchkin::validateCard(std::string& cardName, int lineNumber){
     if (!this->m_cardMap[cardName]){
         std::string error = "Deck File Error: File format error in line " + to_string(lineNumber);
         throw DeckFileFormatError(error);
     }
+}
+
+void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
+    validateCard(cardName, lineNumber);
     Card* card = this->m_cardMap[cardName];
 //    std::cout << *card << std::endl;
 
     m_deck.push(card);
+}
+
+void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber, int* deckSize) {
+    std::string cardName;
+    Gang *gang = new Gang();
+    *lineNumber += 1;
+    while (getline(myFile, cardName) && cardName != GANG_END){
+        validateCard(cardName, *lineNumber);
+        Card* card = this->m_cardMap[cardName];
+        gang->addMonster(card);
+        *lineNumber += 1;
+        *deckSize += 1;
+    }
+    this->m_deck.push(gang);
+
 }
 
 bool Mtmchkin::isGameOver() const {
@@ -312,6 +355,7 @@ void Mtmchkin::incrementRounds() {
     this->m_rounds += 1;
 }
 
+
 Mtmchkin::~Mtmchkin() {
     deletePlayersQ(this->m_playersQ);
     deletePlayersQ(this->m_losers);
@@ -320,3 +364,4 @@ Mtmchkin::~Mtmchkin() {
 //    deletePlayersQ(this->m_deck);
 
 }
+
