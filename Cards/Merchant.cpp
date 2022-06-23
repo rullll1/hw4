@@ -36,7 +36,6 @@ void Merchant::applyEncounter(Player &player) {
         else {
             printInvalidInput();
             std::cin.clear();
-            printInvalidInput();
 //            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 //            printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(),
 //                                                               player.getCoins());
