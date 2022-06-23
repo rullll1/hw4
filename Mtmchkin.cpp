@@ -41,7 +41,7 @@ bool validateName(std::string& name){
 
 }
 
-bool is_number(const std::string& s)
+bool isNumber(const std::string& s)
 {
     std::string::const_iterator it = s.begin();
     while (it != s.end() && std::isdigit(*it)) ++it;
@@ -95,7 +95,7 @@ void Mtmchkin::setGameSize(){
     while (!valid){
         printEnterTeamSizeMessage();
         std::cin >> gameSizeString;
-        if (is_number(gameSizeString)){
+        if (isNumber(gameSizeString)){
             gameSize = std::stoi( gameSizeString);
         }
         if (std::cin.good() && gameSize >= 2 && gameSize <= 6){

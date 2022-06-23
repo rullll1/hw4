@@ -6,16 +6,30 @@
 #include "Merchant.h"
 #include "../utilities.h"
 
+
+bool isStrNumber(const std::string& s)
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
+}
+
 void Merchant::applyEncounter(Player &player) {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(),
                                                        player.getCoins());
 
-    int option;
+    int option = -1;
+    std::string numberstring;
     bool valid = false;
 
-    std::cin >> option;
+
+    std::cin >> numberstring;
 
     while (!valid){
+        if (isStrNumber(numberstring)){
+            option = std::stoi( numberstring);
+        }
+
         if (std::cin.good() && (option == NOT_BUYING || option == HP_OPTION || option == BOOST_OPTION)){
             valid = true;
         }
