@@ -41,6 +41,13 @@ bool validateName(std::string& name){
 
 }
 
+bool is_number(const std::string& s)
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
+}
+
 bool validateRole(std::string& role){
 
     for (size_t i=0; i < playerRoles.size(); i++){
@@ -82,11 +89,15 @@ void Mtmchkin::populateDeck(const std::string& fileName){
 }
 
 void Mtmchkin::setGameSize(){
-    int gameSize;
+    std::string gameSizeString;
+    int gameSize = 0;
     bool valid = false;
     while (!valid){
         printEnterTeamSizeMessage();
-        std::cin >> gameSize;
+        std::cin >> gameSizeString;
+        if (is_number(gameSizeString)){
+            gameSize = std::stoi( gameSizeString);
+        }
         if (std::cin.good() && gameSize >= 2 && gameSize <= 6){
             valid = true;
         }
