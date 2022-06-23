@@ -24,6 +24,7 @@ int main()
         Mtmchkin game(FILE_NAME);
         while (!game.isGameOver() && game.getNumberOfRounds() < MAX_NUMBER_OF_ROUNDS) {
             game.playRound();
+            game.printLeaderBoard();
         }
         game.printLeaderBoard();
     } catch( const exception &e){

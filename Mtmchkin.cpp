@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include <functional>
+#include <algorithm>
 
 #include "Mtmchkin.h"
 
@@ -129,6 +130,20 @@ void Mtmchkin::populatePlayers(){
         this->m_playersQ.push(player);
 
     }
+//    Player* p1 = new Rouge("RougeA");
+//    Player* p2 = new Wizard("WizardA");
+//    Player* p3 = new Wizard("WizardB");
+//    Player* p4 = new Fighter("FigtherA");
+//    Player* p5 = new Fighter("CopyCat");
+//    Player* p6 = new Fighter("CopyCat");
+//
+//    this->m_playersQ.push(p1);
+//    this->m_playersQ.push(p2);
+//    this->m_playersQ.push(p3);
+//    this->m_playersQ.push(p4);
+//    this->m_playersQ.push(p5);
+//    this->m_playersQ.push(p6);
+
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) {
@@ -186,7 +201,7 @@ void Mtmchkin::playCard(Player& player){
         this->m_winners.push(&player);
     }
     else if (player.getHP() == 0){
-        this->m_losers.push(&player);
+        this->m_losers.push_back(&player);
     }
     player.setInGame();
     this->m_deck.push(card);
@@ -265,7 +280,7 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
 
 //    Player* players[this->m_total_players];
     std::vector<Player*> players;
-
+    std::vector<Player> playersPlaying;
     Player *p;
     for (int i=0; i < this->m_total_players; i ++){
         players.push_back(p);
@@ -277,58 +292,40 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
         level[i] = 0;
     }
 
-    int bottomIndex = 0;
-    int upperIndex = this->m_total_players - 1;
     std::queue<Player*> playersQCopy = this->m_playersQ;
-    std::queue<Player*> LosersQCopy = this->m_losers;
+//    std::queue<Player*> LosersQCopy = this->m_losers;
     std::queue<Player*> winnersQCopy = this->m_winners;
 
 
-
-    size_t index = 0;
-
-    for (; index < this->m_losers.size(); bottomIndex++, index++){
-        Player* player = LosersQCopy.front();
-        LosersQCopy.pop();
-        players[bottomIndex] = player;
-        level[bottomIndex] = player->getLevel();
-    }
-
-    for (; !winnersQCopy.empty(); upperIndex--){
-        Player* player = winnersQCopy.front();
-        winnersQCopy.pop();
-        players[upperIndex] = player;
-        level[upperIndex] = player->getLevel();
-    }
-
-
-    for (; bottomIndex < upperIndex + 1; bottomIndex++){
+    for (int i=0; i < this->m_currentPlayerCount; i++){
         Player* player = playersQCopy.front();
         playersQCopy.pop();
-        players[bottomIndex] = player;
-        level[bottomIndex] = player->getLevel();
+        playersPlaying.push_back(*player);
+//        playersPlaying[i] = *player;
+        level[i] = player->getLevel();
+    }
+    int rank = 1;
+    for (size_t i=0; i < this->m_winners.size() ; i++, rank++){
+        Player* player = winnersQCopy.front();
+        winnersQCopy.pop();
+        printPlayerLeaderBoard(rank, *player);
     }
 
-    for (int i=0; i<this->m_total_players; i++){
-        Player* player = players[i];
-        if (player->isPlaying()){
-            for (int j=i + 1; j<this->m_total_players; j++){
-                if (player->getLevel() >= players[j]->getLevel()){
-                    Player* tempPlayer = player;
-                    int tempLevel = level[i];
-                    players[i] = players[j];
-                    players[j] = tempPlayer;
-                    level[i] = level[j];
-                    level[j] = tempLevel;
-                }
-            }
-        }
-
+    for (int i=0; i < this->m_currentPlayerCount ; i++, rank++){
+        printPlayerLeaderBoard(rank, playersPlaying[i]);
     }
 
 
-    for (int i=this->m_total_players - 1; i >= 0 ; i--){
-        printPlayerLeaderBoard(this->m_total_players - i, *players[i]);
+//    for (size_t i=m_losers.size() - 1; i > -1 ; i--, rank++){
+//        Player* player = m_losers[i];
+////        LosersQCopy.pop();
+//        printPlayerLeaderBoard(rank, *player);
+//    }
+
+
+    for (auto it = m_losers.rbegin(); it != m_losers.rend(); ++it, rank++)
+    {
+        printPlayerLeaderBoard(rank, **it);
     }
 
     delete[] level;
@@ -341,6 +338,13 @@ void deletePlayersQ(std::queue<Player*>& objectQ){
     for (size_t i=0; i < size; i ++ ){
         Player* object = objectQ.front();
         objectQ.pop();
+        delete object;
+    }
+}
+
+void deleteLosers(std::vector<Player*>& vec){
+    for (size_t i=0; i < vec.size(); i ++ ){
+        Player* object = vec[i];
         delete object;
     }
 }
@@ -361,7 +365,7 @@ void Mtmchkin::incrementRounds() {
 
 Mtmchkin::~Mtmchkin() {
     deletePlayersQ(this->m_playersQ);
-    deletePlayersQ(this->m_losers);
+    deleteLosers(this->m_losers);
     deletePlayersQ(this->m_winners);
     this->deleteDeck();
 //    deletePlayersQ(this->m_deck);

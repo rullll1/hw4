@@ -72,7 +72,7 @@ public:
 
 
 
-    std::queue<Player*> m_losers; // TODO: move to private
+//    std::queue<Player*> m_losers; // TODO: move to private
     std::queue<Player*> m_winners; // TODO: move to private
 
 
@@ -97,6 +97,7 @@ private:
 
     std::queue<Player*> m_playersQ;
     std::queue<Card*> m_deck;
+    std::vector<Player*> m_losers;
 //    std::map<std::string, std::unique_ptr<Card>> m_cardMap;
     std::map<std::string, Card*> m_cardMap;
     int m_currentPlayerCount;
