@@ -100,22 +100,56 @@ void Mtmchkin::setGameSize(){
 
 }
 
-void Mtmchkin::populatePlayers(){
+void parseInput(const std::string& input, std::string& name, std::string& role){
+    int space = 0;
+    for (std::string::size_type i = 0; i < input.size(); i++){
+        if (input[i] == ' '){
+            space = i;
+            name = input.substr(0, space);
+            role = input.substr(space + 1, input.size());
+            break;
+        }
+    }
 
+
+
+}
+
+void Mtmchkin::populatePlayers(){
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     for (int i=0; i < this->m_total_players; i++){
         printInsertPlayerMessage();
         // Type a number and press enter
-        std::string name, role;
-
-        std::cin >> name >> role;
-        while (!validateName(name)){
-            printInvalidName();
-            std::cin >> name >> role;
+        std::string name, role, input;
+        std::getline(std::cin, input);
+        parseInput(input, name, role);
+        while (true){
+            if (!validateName(name)){
+                printInvalidName();
+                std::getline(std::cin, input);
+                parseInput(input, name, role);
+            }
+            else if (!validateRole(role)){
+                printInvalidClass();
+                std::getline(std::cin, input);
+                parseInput(input, name, role);
+            }
+            else {
+                break;
+            }
         }
-        while (!validateRole(role)){
-            printInvalidClass();
-            std::cin >> name >> role;
-        }
+//        while (!validateName(name)){
+//            printInvalidName();
+//            std::getline(std::cin, input);
+//            parseInput(input, name, role);
+//        }
+//        while (!validateRole(role)){
+//            printInvalidClass();
+//            std::getline(std::cin, input);
+//            parseInput(input, name, role);
+////            std::cin >> name >> role;
+//        }
 
         Player* player;
         if (role == FIGHTER){
