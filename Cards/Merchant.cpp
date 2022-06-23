@@ -49,11 +49,11 @@ void Merchant::applyEncounter(Player &player) {
     switch (option) {
         case HP_OPTION:
             price = HP_POTION_PRICE;
-            player.buyHPPotion();
+            player.buyHPPotion(&price);
             break;
         case BOOST_OPTION:
             price = BOOST_POTION_PRICE;
-            player.buyBoostPotion();
+            player.buyBoostPotion(&price);
             break;
     }
 

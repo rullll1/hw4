@@ -145,20 +145,22 @@ void Player::setInGame() {
     this->inGame = isPlaying();
 }
 
-void Player::buyHPPotion() {
+void Player::buyHPPotion(int* price) {
     if (this->pay(HP_POTION_PRICE)){
         this->heal(POTION_HEAL);
     }
     else {
+        *price = 0;
         printMerchantInsufficientCoins(std::cout);
     }
 }
 
-void Player::buyBoostPotion() {
+void Player::buyBoostPotion(int* price) {
     if (this->pay(BOOST_POTION_PRICE)){
         this->buff(BOOST_BUFF);
     }
     else {
+        *price = 0;
         printMerchantInsufficientCoins(std::cout);
     }
 }

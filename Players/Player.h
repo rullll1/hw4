@@ -92,9 +92,9 @@ public:
 
     int calculateScore() const;
 
-    void buyHPPotion();
+    void buyHPPotion(int* price);
 
-    void buyBoostPotion();
+    void buyBoostPotion(int* price);
 
     void setInGame();
 
