@@ -34,7 +34,10 @@
 #include "Exception.h"
 
 bool validateName(std::string& name){
-    return name.size() <= 15;
+    bool contains_non_alpha
+            = name.find_first_not_of("abcdefghijklmnopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM") != std::string::npos;
+    return name.size() <= 15 && !contains_non_alpha;
+
 }
 
 bool validateRole(std::string& role){
