@@ -226,7 +226,11 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     try{
         populateDeck(fileName);
     }
-    catch(const std::exception& e){
+    catch(DeckFileInvalidSize& e){
+        deleteDeck();
+        throw;
+    }
+    catch(const DeckFileFormatError& e){
         deleteDeck();
         throw;
     }
