@@ -94,7 +94,8 @@ void Mtmchkin::setGameSize(){
     bool valid = false;
     while (!valid){
         printEnterTeamSizeMessage();
-        std::cin >> gameSizeString;
+        getline(cin, gameSizeString);
+//        std::cin >> gameSizeString;
         if (isNumber(gameSizeString)){
             gameSize = std::stoi( gameSizeString);
         }
@@ -103,8 +104,8 @@ void Mtmchkin::setGameSize(){
         }
         else {
             printInvalidTeamSize();
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+//            std::cin.clear();
+//            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
     }
     this->m_total_players = gameSize;
@@ -129,7 +130,7 @@ void parseInput(const std::string& input, std::string& name, std::string& role){
 
 void Mtmchkin::populatePlayers(){
     std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+//    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     for (int i=0; i < this->m_total_players; i++){
         printInsertPlayerMessage();
         // Type a number and press enter
