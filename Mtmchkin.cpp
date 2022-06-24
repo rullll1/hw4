@@ -281,6 +281,7 @@ void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
 void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
     std::string cardName;
     Gang *gang = new Gang();
+    this->m_deck.push(gang);
     *lineNumber += 1;
     while (getline(myFile, cardName) && cardName != GANG_END){
         validateCard(cardName, *lineNumber);
@@ -289,11 +290,9 @@ void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
         *lineNumber += 1;
     }
     if (cardName != GANG_END){
-        delete gang;
         std::string error = "Deck File Error: File format error in line " + to_string(*lineNumber);
         throw DeckFileFormatError(error);
     }
-    this->m_deck.push(gang);
 
 }
 
