@@ -19,3 +19,8 @@ Dragon::Dragon() {
     this->m_hpLossOnDefeat = MAX_HP; // The amount of hp you lose when losing the battle
 
 }
+
+void Dragon::loseBattle(Player &player) {
+    player.damage(player.getHP());
+    printLossBattle(player.getName(), this->getName());
+}

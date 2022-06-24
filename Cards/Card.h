@@ -79,7 +79,7 @@ public:
 
 
 
-    virtual void handleBattleCard(Player& player, int force, int loot, int damageTaken);
+//    virtual void handleBattleCard(Player& player, int force, int loot, int damageTaken);
 
 
     virtual void printinfo() const;

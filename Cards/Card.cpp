@@ -31,25 +31,25 @@ Card::Card(CardType type, const CardStats& stats) {
 //    }
 //}
 
-void Card::handleBattleCard(Player& player, int force, int loot, int damageTaken)
-    {
-        if (player.getAttackStrength() >= force){
-            player.levelUp();
-            player.addCoins(loot);
-            printWinBattle(player.getName(), this->getName());
-
-
-//        printBattleResult(true);
-        }
-        else {
-            if (damageTaken == MAX_HP){
-                damageTaken = player.getHP();
-            }
-            player.damage(damageTaken);
-            printLossBattle(player.getName(), this->getName());
-//        printBattleResult(false);
-        }
-    }
+//void Card::handleBattleCard(Player& player, int force, int loot, int damageTaken)
+//    {
+//        if (player.getAttackStrength() >= force){
+//            player.levelUp();
+//            player.addCoins(loot);
+//            printWinBattle(player.getName(), this->getName());
+//
+//
+////        printBattleResult(true);
+//        }
+//        else {
+//            if (damageTaken == MAX_HP){
+//                damageTaken = player.getHP();
+//            }
+//            player.damage(damageTaken);
+//            printLossBattle(player.getName(), this->getName());
+////        printBattleResult(false);
+//        }
+//    }
 
 void handleHealCard(Player& player, int cost, int hp){
     if (player.pay(cost)){

@@ -12,9 +12,11 @@ class Vampire: public BattleCard {
 public:
     Vampire();
     void printinfo() const override;
-    void handleBattleCard(Player &player, int force, int loot, int damageTaken) override;
+    void loseBattle(Player &player) override;
 private:
     CardType m_type;
+
+
 };
 
 

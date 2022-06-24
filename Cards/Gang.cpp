@@ -3,13 +3,23 @@
 //
 
 #include "Gang.h"
+#include "BattleCard.h"
+#include "../utilities.h"
 
-void Gang::addMonster(Card* monster) {
+void Gang::addMonster(BattleCard* monster) {
     this->gangCards.push_back(monster);
 }
 
 void Gang::applyEncounter(Player &player) {
-    for(Card* value: this->gangCards) {
-        std::cout << *value << "\n";
+    bool lost = false;
+    for (BattleCard* monster: this->gangCards) {
+        if (player.getAttackStrength() < monster->getAttackStrength() || lost){
+            monster->loseBattle(player);
+            lost = true;
+        }
+        else {
+            player.addCoins(monster->getLoot());
+            printWinBattle(player.getName(), monster->getName());
+        }
     }
 }

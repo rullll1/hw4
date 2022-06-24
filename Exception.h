@@ -45,13 +45,12 @@ public:
 
 struct DeckFileFormatError : public std::exception
 {
-    std::string s;
-    DeckFileFormatError(std::string& ss) : s(ss) {}
-    ~DeckFileFormatError() throw () {} // Updated
-//    const char* what() const throw() { return s.c_str(); }
-
+    std::string err = "Deck File Error: File format error in line ";
+    std::string lineNumberStr;
+    DeckFileFormatError(std::string& lineNumber) : lineNumberStr(lineNumber) {}
     const char * what() const noexcept override {
-        return s.c_str();
+        std::string errorMsg = "Deck File Error: File format error in line " + lineNumberStr;
+        return errorMsg.c_str();
     }
 
 

@@ -7,15 +7,15 @@
 
 #include <vector>
 #include "Card.h"
+#include "BattleCard.h"
 
 class Gang: public Card {
 public:
     Gang() = default;
-
-    void addMonster(Card* monster);
+    void addMonster(BattleCard* monster);
     void applyEncounter(Player &player) override;
 private:
-    std::vector<Card*> gangCards;
+    std::vector<BattleCard*> gangCards;
 
 };
 

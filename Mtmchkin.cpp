@@ -67,13 +67,13 @@ void Mtmchkin::populateDeck(const std::string& fileName){
     if (myFile.is_open()) {
         while (getline(myFile, line)) {
             if (line == GANG_BEGINING){
-                addGang(myFile, &lineNumber, &deckSize);
+                addGang(myFile, &lineNumber);
             }
             else {
                 this->addCard(line, lineNumber);
                 lineNumber += 1;  // TODO: maybe move it to addCard ?
-                deckSize += 1;  // TODO: maybe move it to addCard ?
             }
+            deckSize += 1;  // TODO: maybe move it to addCard ?
         }
         myFile.close();
 
@@ -204,24 +204,6 @@ Mtmchkin::Mtmchkin(const std::string fileName) {
     this->m_cardMap[PIT_FALL] = new Pitfall();
     this->m_cardMap[MERCHANT] = new Merchant();
 
-//    this->m_cardMap.insert(std::make_pair(DRAGON, std::unique_ptr<Card>(new Dragon())));
-//    this->m_cardMap.insert(std::make_pair(VAMPIRE, std::unique_ptr<Card>(new Vampire())));
-//    this->m_cardMap.insert(std::make_pair(GOBLIN, std::unique_ptr<Card>(new Goblin())));
-//    this->m_cardMap.insert(std::make_pair(FAIRY, std::unique_ptr<Card>(new Fairy())));
-//    this->m_cardMap.insert(std::make_pair(BAR_FIGHT, std::unique_ptr<Card>(new Barfight())));
-//    this->m_cardMap.insert(std::make_pair(TREASURE, std::unique_ptr<Card>(new Treasure())));
-//    this->m_cardMap.insert(std::make_pair(PIT_FALL, std::unique_ptr<Card>(new Pitfall())));
-//    this->m_cardMap.insert(std::make_pair(MERCHANT, std::unique_ptr<Card>(new Merchant())));
-
-
-
-
-//    try{
-//    }
-//    catch(const DeckFileInvalidSize& e){
-//        bool flag = true;
-//        throw;
-//    }
 
     try{
         populateDeck(fileName);
@@ -283,8 +265,8 @@ void Mtmchkin::playRound() {
 
 void Mtmchkin::validateCard(std::string& cardName, int lineNumber){
     if (!this->m_cardMap[cardName]){
-        std::string error = "Deck File Error: File format error in line " + to_string(lineNumber);
-        throw DeckFileFormatError(error);
+        std::string lineNumberStr = to_string(lineNumber);
+        throw DeckFileFormatError(lineNumberStr);
     }
 }
 
@@ -296,16 +278,19 @@ void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
     m_deck.push(card);
 }
 
-void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber, int* deckSize) {
+void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
     std::string cardName;
     Gang *gang = new Gang();
     *lineNumber += 1;
     while (getline(myFile, cardName) && cardName != GANG_END){
         validateCard(cardName, *lineNumber);
-        Card* card = this->m_cardMap[cardName];
+        BattleCard* card = dynamic_cast<BattleCard *>(this->m_cardMap[cardName]);
         gang->addMonster(card);
         *lineNumber += 1;
-        *deckSize += 1;
+    }
+    if (cardName != GANG_END){
+        std::string lineNumberStr = to_string(*lineNumber);
+        throw DeckFileFormatError(lineNumberStr);
     }
     this->m_deck.push(gang);
 

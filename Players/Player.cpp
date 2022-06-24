@@ -77,6 +77,10 @@ void Player::heal(int hp) {
 }
 
 void Player::damage(int hp) {
+    if (hp == MAX_HP){
+        this->m_HP = 0;
+        return;
+    }
     hp = max(0, hp);
     this->m_HP = max(this->m_HP - hp, 0);
 }

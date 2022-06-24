@@ -18,6 +18,7 @@ public:
     Dragon();
     ~Dragon() = default;
     void printinfo() const override;
+    void loseBattle(Player &player) override;
 
 private:
     CardType m_type;

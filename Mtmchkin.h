@@ -79,7 +79,7 @@ public:
 
 private:
     void addCard(std::string& cardName, int lineNumber);
-    void addGang(ifstream& myFile, int *lineNumber, int *deckSize);
+    void addGang(ifstream &myFile, int *lineNumber);
 
 
     void populateDeck(const std::string& fileName);
