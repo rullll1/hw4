@@ -301,6 +301,7 @@ void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
         std::string error = "Deck File Error: File format error in line " + to_string(*lineNumber);
         throw DeckFileFormatError(error);
     }
+    *lineNumber += 1;
 
 }
 
