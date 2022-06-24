@@ -389,7 +389,7 @@ void Mtmchkin::deleteDeck(){
     std::queue<Card*> deckCopy = this->m_deck;
     for (size_t i=0; i < this->m_deck.size(); i++ ){
         Card* card = deckCopy.front();
-        m_deck.pop();
+        deckCopy.pop();
         if (card->getName() == GANG_BEGINING) {
             delete card;
         }

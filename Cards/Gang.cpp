@@ -19,7 +19,10 @@ void Gang::applyEncounter(Player &player) {
         }
         else {
             player.addCoins(monster->getLoot());
-            printWinBattle(player.getName(), monster->getName());
         }
+    }
+    if (!lost){
+        printWinBattle(player.getName(), "Gang");
+        player.levelUp();
     }
 }
