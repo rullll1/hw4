@@ -265,8 +265,8 @@ void Mtmchkin::playRound() {
 
 void Mtmchkin::validateCard(std::string& cardName, int lineNumber){
     if (!this->m_cardMap[cardName]){
-        std::string lineNumberStr = to_string(lineNumber);
-        throw DeckFileFormatError(lineNumberStr);
+        std::string error = "Deck File Error: File format error in line " + to_string(lineNumber);
+        throw DeckFileFormatError(error);
     }
 }
 
@@ -289,8 +289,8 @@ void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
         *lineNumber += 1;
     }
     if (cardName != GANG_END){
-        std::string lineNumberStr = to_string(*lineNumber);
-        throw DeckFileFormatError(lineNumberStr);
+        std::string error = "Deck File Error: File format error in line " + to_string(*lineNumber);
+        throw DeckFileFormatError(error);
     }
     this->m_deck.push(gang);
 
