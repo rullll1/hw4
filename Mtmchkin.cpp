@@ -323,20 +323,7 @@ bool Mtmchkin::isGameOver() const {
 void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
     printLeaderBoardStartMessage();
 
-//    Player* players[this->m_total_players];
-    std::vector<Player*> players;
     std::vector<Player> playersPlaying;
-    Player *p;
-    for (int i=0; i < this->m_total_players; i ++){
-        players.push_back(p);
-    }
-
-    int *level = new int[this->m_total_players];
-
-    for (int i=0; i < this->m_total_players; i++){
-        level[i] = 0;
-    }
-
     std::queue<Player*> playersQCopy = this->m_playersQ;
 //    std::queue<Player*> LosersQCopy = this->m_losers;
     std::queue<Player*> winnersQCopy = this->m_winners;
@@ -346,8 +333,7 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
         Player* player = playersQCopy.front();
         playersQCopy.pop();
         playersPlaying.push_back(*player);
-//        playersPlaying[i] = *player;
-        level[i] = player->getLevel();
+
     }
     int rank = 1;
     for (size_t i=0; i < this->m_winners.size() ; i++, rank++){
@@ -361,23 +347,12 @@ void Mtmchkin::printLeaderBoard() const {  //TODO: CLEAN ASAP
     }
 
 
-//    for (size_t i=m_losers.size() - 1; i > -1 ; i--, rank++){
-//        Player* player = m_losers[i];
-////        LosersQCopy.pop();
-//        printPlayerLeaderBoard(rank, *player);
-//    }
-
-
-    for (auto it = m_losers.rbegin(); it != m_losers.rend(); ++it, rank++)
+    for (auto it = m_losers.rbegin(); it != m_losers.rend(); ++it, rank++) // TODO: remove auto
     {
         printPlayerLeaderBoard(rank, **it);
     }
-
-    delete[] level;
-
 }
 
-//template<class T>
 void deletePlayersQ(std::queue<Player*>& objectQ){
     size_t size = objectQ.size();
     for (size_t i=0; i < size; i ++ ){
@@ -421,7 +396,6 @@ Mtmchkin::~Mtmchkin() {
     deleteLosers(this->m_losers);
     deletePlayersQ(this->m_winners);
     this->deleteDeck();
-//    deletePlayersQ(this->m_deck);
 
 }
 

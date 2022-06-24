@@ -6,8 +6,6 @@
 #define HW4_CONSTS_H
 
 #include <string>
-#include <functional>
-#include <map>
 #include <vector>
 
 const int MAX_LEVEL = 10;
@@ -46,26 +44,6 @@ const int HP_OPTION = 1;
 const int BOOST_OPTION = 2;
 const int POTION_HEAL = 1;
 const int BOOST_BUFF = 1;
-
-//int tester(){
-//    printf("lets go");
-//    return 5;
-//}
-
-//std::map<std::string, std::function<void()>> functionCallMap;
-//std::map<std::string, int> functionCallMap1;
-//
-////const std::map<std::string, std::function<void()>> my_map = {
-////        { "Cat", tester },
-////        { "Dog", tester },
-////        { "Fish", tester }
-////};
-//void functionCallMap["test"] =  tester;
-
-
-
-
-
 
 
 #endif //HW4_CONSTS_H

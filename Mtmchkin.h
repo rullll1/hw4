@@ -4,6 +4,8 @@
 #include <string>
 #include <queue>
 #include <memory>
+#include <map>
+
 #include "Cards/Card.h"
 #include "Cards/Barfight.h"
 #include "Cards/BattleCard.h"
@@ -71,12 +73,6 @@ public:
     int getNumberOfRounds() const;
 
 
-
-//    std::queue<Player*> m_losers; // TODO: move to private
-    std::queue<Player*> m_winners; // TODO: move to private
-
-
-
 private:
     void addCard(std::string& cardName, int lineNumber);
     void addGang(ifstream &myFile, int *lineNumber);
@@ -99,7 +95,8 @@ private:
     std::queue<Player*> m_playersQ;
     std::queue<Card*> m_deck;
     std::vector<Player*> m_losers;
-//    std::map<std::string, std::unique_ptr<Card>> m_cardMap;
+    std::queue<Player*> m_winners;
+    //    std::map<std::string, std::unique_ptr<Card>> m_cardMap;
     std::map<std::string, Card*> m_cardMap;
     int m_currentPlayerCount;
     int m_total_players;

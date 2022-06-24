@@ -63,9 +63,7 @@ public:
      * @return
      *      A new instance of Card.
     */
-    Card(CardType type, const CardStats& stats);
-
-    Card(): m_effect(CardType::Treasure), m_stats() {}
+    Card() = default;
 
     /*
      * Handling the player's applyEncounter with the card:
@@ -76,10 +74,6 @@ public:
     */
     virtual void applyEncounter(Player& player);
 
-
-
-
-//    virtual void handleBattleCard(Player& player, int force, int loot, int damageTaken);
 
 
     virtual void printinfo() const;
@@ -105,13 +99,9 @@ public:
 
 
 private:
-    CardType m_effect;
-    CardStats m_stats;
-
 
 protected:
     std::string m_name = "Card";
-    int test;
 };
 
 
