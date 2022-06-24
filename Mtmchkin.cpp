@@ -386,7 +386,15 @@ void deleteLosers(std::vector<Player*>& vec){
 }
 
 void Mtmchkin::deleteDeck(){
-    for (size_t i=0; i < N_CARD_TYPES; i ++ ){
+    std::queue<Card*> deckCopy = this->m_deck;
+    for (size_t i=0; i < this->m_deck.size(); i++ ){
+        Card* card = deckCopy.front();
+        m_deck.pop();
+        if (card->getName() == GANG_BEGINING) {
+            delete card;
+        }
+    }
+    for (int i=0; i < N_CARD_TYPES; i ++ ){
         Card* card = this->m_cardMap[cardTypes[i]];
         delete card;
     }

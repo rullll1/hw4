@@ -11,9 +11,11 @@
 
 class Gang: public Card {
 public:
-    Gang() = default;
+    Gang(){this->m_name = GANG_BEGINING;}
+    ~Gang() = default;
     void addMonster(BattleCard* monster);
     void applyEncounter(Player &player) override;
+
 private:
     std::vector<BattleCard*> gangCards;
 
