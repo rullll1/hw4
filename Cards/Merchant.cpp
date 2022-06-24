@@ -24,13 +24,14 @@ void Merchant::applyEncounter(Player &player) {
 
     getline(cin, numberstring);
     while (!valid){
-        if (isStrNumber(numberstring)){
-            option = std::stoi( numberstring);
-        }
+        if (isStrNumber(numberstring) &&
+             (numberstring == to_string(NOT_BUYING) || numberstring == to_string(HP_OPTION) ||
+            numberstring == to_string(BOOST_OPTION))){
+                option = std::stoi( numberstring);
+                valid = true;
+            }
 
-        if (std::cin.good() && (option == NOT_BUYING || option == HP_OPTION || option == BOOST_OPTION)){
-            valid = true;
-        }
+
         else {
             printInvalidInput();
 //            std::cin.clear();
