@@ -95,8 +95,8 @@ void Mtmchkin::setGameSize(){
     while (!valid){
         printEnterTeamSizeMessage();
         getline(cin, gameSizeString);
-//        std::cin >> gameSizeString;
-        if (isNumber(gameSizeString)){
+        if (isNumber(gameSizeString) && gameSizeString.size() < 2){
+
             gameSize = std::stoi( gameSizeString);
         }
         if (std::cin.good() && gameSize >= 2 && gameSize <= 6){
@@ -104,8 +104,6 @@ void Mtmchkin::setGameSize(){
         }
         else {
             printInvalidTeamSize();
-//            std::cin.clear();
-//            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
         }
     }
     this->m_total_players = gameSize;
