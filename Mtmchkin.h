@@ -74,21 +74,54 @@ public:
 
 
 private:
+    /*
+     * adds normal card to the deck
+     */
     void addCard(std::string& cardName, int lineNumber);
+
+    /*
+     * adds gang card to the deck
+     */
+
     void addGang(ifstream &myFile, int *lineNumber);
 
-
+    /*
+     * populates the deck from the deck.txt file
+     */
     void populateDeck(const std::string& fileName);
+    /*
+     * increases m_round attr
+     */
     void incrementRounds();
+    /*
+     * plays the next card in the deck
+     */
     void playCard(Player& player);
+    /*
+     * sets the number of players playing the game
+     */
     void setGameSize();
+    /*
+     * populates the players for the game itself
+     */
     void populatePlayers();
+    /*
+     * deletes the deck
+     */
     void deleteDeck();
+    /*
+     * validates the card in the deck is a real card
+     */
     void validateCard(string &cardName, int lineNumber);
+    /*
+     * validates the card in the gang is a monster card
+    */
     void validateGangCard(string &cardName, int lineNumber);
 
-
-    void popPlayer(){  // TODO: delete later maybe
+    /*
+     * removes a player from the playersQ
+     */
+    void popPlayer(){
         this->m_playersQ.pop();
     }
 
