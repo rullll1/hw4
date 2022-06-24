@@ -22,9 +22,7 @@ void Merchant::applyEncounter(Player &player) {
     std::string numberstring;
     bool valid = false;
 
-
-    std::cin >> numberstring;
-
+    getline(cin, numberstring);
     while (!valid){
         if (isStrNumber(numberstring)){
             option = std::stoi( numberstring);
@@ -35,11 +33,11 @@ void Merchant::applyEncounter(Player &player) {
         }
         else {
             printInvalidInput();
-            std::cin.clear();
+//            std::cin.clear();
 //            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 //            printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getName(),
 //                                                               player.getCoins());
-            std::cin >> numberstring;
+            getline(cin, numberstring);
 
         }
     }
