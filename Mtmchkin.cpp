@@ -270,6 +270,14 @@ void Mtmchkin::validateCard(std::string& cardName, int lineNumber){
     }
 }
 
+void Mtmchkin::validateGangCard(std::string& cardName, int lineNumber){
+    bool isMonster = std::find(MonsterTypes.begin(), MonsterTypes.end(), cardName) != MonsterTypes.end();
+    if (!isMonster){
+        std::string error = "Deck File Error: File format error in line " + to_string(lineNumber);
+        throw DeckFileFormatError(error);
+    }
+}
+
 void Mtmchkin::addCard(std::string& cardName, int lineNumber) {
     validateCard(cardName, lineNumber);
     Card* card = this->m_cardMap[cardName];
@@ -284,7 +292,7 @@ void Mtmchkin::addGang(std::ifstream& myFile, int* lineNumber) {
     this->m_deck.push(gang);
     *lineNumber += 1;
     while (getline(myFile, cardName) && cardName != GANG_END){
-        validateCard(cardName, *lineNumber);
+        validateGangCard(cardName, *lineNumber);
         BattleCard* card = dynamic_cast<BattleCard *>(this->m_cardMap[cardName]);
         gang->addMonster(card);
         *lineNumber += 1;

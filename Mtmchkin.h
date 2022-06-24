@@ -89,6 +89,7 @@ private:
     void populatePlayers();
     void deleteDeck();
     void validateCard(string &cardName, int lineNumber);
+    void validateGangCard(string &cardName, int lineNumber);
 
 
     void popPlayer(){  // TODO: delete later maybe

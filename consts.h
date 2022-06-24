@@ -29,6 +29,7 @@ const int N_CARD_TYPES = 8;
 
 
 const std::vector<std::string> cardTypes = {GOBLIN, DRAGON, VAMPIRE, FAIRY, BAR_FIGHT, TREASURE, MERCHANT, PIT_FALL};
+const std::vector<std::string> MonsterTypes = {GOBLIN, DRAGON, VAMPIRE};
 
 
 const std::string FIGHTER =  "Fighter";
